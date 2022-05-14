@@ -1,0 +1,99 @@
+{
+    "projectType": "application",
+    "sourceRoot": "apps/marvel-ionic/src",
+    "prefix": "pmt",
+    "targets": {
+      "build": {
+        "executor": "@angular-devkit/build-angular:browser",
+        "outputs": ["{options.outputPath}"],
+        "options": {
+          "outputPath": "dist/apps/marvel-ionic",
+          "index": "apps/marvel-ionic/src/index.html",
+          "main": "apps/marvel-ionic/src/main.ts",
+          "polyfills": "apps/marvel-ionic/src/polyfills.ts",
+          "tsConfig": "apps/marvel-ionic/tsconfig.app.json",
+          "inlineStyleLanguage": "scss",
+          "assets": [
+            "apps/marvel-ionic/src/favicon.ico",
+            "apps/marvel-ionic/src/assets",
+            {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
+          ],
+          "styles": ["apps/marvel-ionic/src/global.scss"],
+          "scripts": []
+        },
+        "configurations": {
+          "production": {
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "500kb",
+                "maximumError": "1mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ],
+            "fileReplacements": [
+              {
+                "replace": "apps/marvel-ionic/src/environments/environment.ts",
+                "with": "apps/marvel-ionic/src/environments/environment.prod.ts"
+              }
+            ],
+            "outputHashing": "all"
+          },
+          "development": {
+            "buildOptimizer": false,
+            "optimization": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "sourceMap": true,
+            "namedChunks": true
+          }
+        },
+        "defaultConfiguration": "production"
+      },
+      "serve": {
+        "executor": "@angular-devkit/build-angular:dev-server",
+        "configurations": {
+          "production": {
+            "browserTarget": "marvel-ionic:build:production"
+          },
+          "development": {
+            "browserTarget": "marvel-ionic:build:development"
+          }
+        },
+        "defaultConfiguration": "development"
+      },
+      "extract-i18n": {
+        "executor": "@angular-devkit/build-angular:extract-i18n",
+        "options": {
+          "browserTarget": "marvel-ionic:build"
+        }
+      },
+      "lint": {
+        "executor": "@nrwl/linter:eslint",
+        "options": {
+          "lintFilePatterns": [
+            "apps/marvel-ionic/**/*.ts",
+            "apps/marvel-ionic/**/*.html"
+          ]
+        }
+      },
+      "test": {
+        "executor": "@nrwl/jest:jest",
+        "outputs": ["coverage/apps/marvel-ionic"],
+        "options": {
+          "jestConfig": "apps/marvel-ionic/jest.config.ts",
+          "passWithNoTests": true
+        }
+      }
+    },
+    "tags": []
+  }
+  
