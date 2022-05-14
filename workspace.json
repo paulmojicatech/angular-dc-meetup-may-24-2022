@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "marvel-web": "apps/marvel-web",
+    "marvel-web-e2e": "apps/marvel-web-e2e"
+  }
 }
