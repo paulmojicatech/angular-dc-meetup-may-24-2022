@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterModule } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
