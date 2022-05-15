@@ -15,3 +15,5 @@
 - CD into `marvel-ionic` and add project.json
 - Copy project.json from `marvel-web` and replace all instances of `marvel-web` with `marvel-ionic`
 - Delete angular.json
+- Run `nx g @angular/material:ng-add --project=marvel-web`
+- 
