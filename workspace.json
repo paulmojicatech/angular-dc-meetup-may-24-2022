@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "marvel-ionic": "apps/marvel-ionic",
+    "marvel-ionic-e2e": "apps/marvel-ionic-e2e",
     "marvel-web": "apps/marvel-web",
     "marvel-web-e2e": "apps/marvel-web-e2e"
   }
