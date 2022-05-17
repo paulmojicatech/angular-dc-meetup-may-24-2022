@@ -26,3 +26,8 @@ export interface HomeModuleState {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AppState {}
+
+export interface HomeComponentViewModel {
+  isLoading: boolean;
+  characters: Character[] | undefined;
+}

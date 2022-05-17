@@ -1,1 +1,7 @@
-<p>home works!</p>
+<main class="home-container" *ngIf="viewModel$ | async as viewModel">
+    <section class="characters-section">
+        <div class="characters-container" *ngFor="let character of viewModel.characters">
+            {{character.name}}
+        </div>
+    </section>
+</main>

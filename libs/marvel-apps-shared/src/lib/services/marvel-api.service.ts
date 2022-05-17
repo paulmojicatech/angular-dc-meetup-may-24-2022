@@ -8,9 +8,9 @@ import { PRIVATE_MARVEL_KEY, PUBLIC_MARVEL_KEY } from '../keys';
 })
 export class MarvelApiService {
 
-   getApiHash(): { ts: number, hash: string } {
-     const ts = new Date().getDate();
+   getApiHash(): string {
+     const ts = `${new Date().getTime()}`;
      const hash = Md5.Md5.hashStr(`${ts}${PRIVATE_MARVEL_KEY}${PUBLIC_MARVEL_KEY}`);
-     return { ts, hash };
+     return `apikey=${PUBLIC_MARVEL_KEY}&ts=${ts}&hash=${hash}`;
    }
 }
