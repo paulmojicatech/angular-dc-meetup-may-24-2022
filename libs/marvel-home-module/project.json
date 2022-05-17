@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/marvel-home-module/src",
+  "prefix": "pmt",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/marvel-home-module"],
+      "options": {
+        "jestConfig": "libs/marvel-home-module/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/marvel-home-module/**/*.ts",
+          "libs/marvel-home-module/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
