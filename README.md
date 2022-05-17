@@ -16,4 +16,8 @@
 - Copy project.json from `marvel-web` and replace all instances of `marvel-web` with `marvel-ionic`
 - Delete angular.json
 - Run `nx g @angular/material:ng-add --project=marvel-web`
-- 
+- Run `nx g @nrwl/angular:lib marvel-apps-shared`
+- Run `npm i ts-md5 --save`
+- Run `nx g @nrwl/angular:lib marvel-home-module`
+- Run `npm i @ngrx/store @ngrx/effects --save`
+- Run `npm i @ngrx/store-devtools --save-dev`
