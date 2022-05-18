@@ -9,6 +9,11 @@ const routes: Route[] = [
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
     },
     {
+        path: 'character-detail',
+        pathMatch: 'full',
+        loadChildren: () => import('./character-detail/character-detail.module').then(m => m.CharacterDetailModule)
+    },
+    {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

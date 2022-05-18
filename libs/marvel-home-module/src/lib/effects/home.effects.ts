@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { MarvelHttpService, setErrorMessage, toggleLoader } from "@pmt/marvel-apps-shared";
-import { catchError, filter, map, switchMap } from "rxjs";
-import { loadCharacters, loadCharactersSuccess } from "../actions/home.actions";
+import { catchError, filter, map, switchMap, tap } from "rxjs";
+import { loadCharacters, loadCharactersSuccess, setCurrentCharacter } from "../actions/home.actions";
 import { HomeUtilService } from "../services/home-util.service";
+import {Router} from '@angular/router';
 @Injectable()
 export class HomeEffects {
-    constructor(private _actions$: Actions, private _marvelHttpSvc: MarvelHttpService, private _homeUtilSvc: HomeUtilService){}
+    constructor(private _actions$: Actions, private _marvelHttpSvc: MarvelHttpService, private _homeUtilSvc: HomeUtilService, private _router: Router){}
 
     loadCharacters$ = createEffect(
         () => this._actions$.pipe(
@@ -36,6 +37,13 @@ export class HomeEffects {
             ofType(loadCharactersSuccess),
             map(() => toggleLoader({isLoading: false }))
         )
+    );
+
+    setCurrentCharacterRoute$ = createEffect(
+        () => this._actions$.pipe(
+            ofType(setCurrentCharacter),
+            tap(() => this._router.navigate(['character-detail']))
+        ), { dispatch: false }
     );
 
 }

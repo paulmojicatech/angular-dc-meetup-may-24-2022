@@ -13,9 +13,9 @@ export class HomeComponent implements OnInit {
   
   viewModel$!: Observable<HomeComponentViewModel>;
 
-  constructor(public domSanitizer: DomSanitizer, private _componentStateSvc: HomeComponentStateService) {}
+  constructor(public domSanitizer: DomSanitizer, public componentStateSvc: HomeComponentStateService) {}
 
   ngOnInit(): void {
-    this.viewModel$ = this._componentStateSvc.getViewModel();
+    this.viewModel$ = this.componentStateSvc.getViewModel();
   }
 }

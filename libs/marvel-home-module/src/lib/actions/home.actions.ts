@@ -10,3 +10,8 @@ export const loadCharactersSuccess = createAction(
     '[Home] Load Characters Success',
     props<{characters: Character[]}>()
 );
+
+export const setCurrentCharacter = createAction(
+    '[] Set Current Character',
+    props<{characterId: number}>()
+);
