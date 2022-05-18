@@ -12,3 +12,8 @@ export const getCharacters = createSelector(
     homeModuleState,
     state => state.characters
 );
+
+export const getCurrentCharacter = createSelector(
+    homeModuleState,
+    state => state.currentCharacter
+);

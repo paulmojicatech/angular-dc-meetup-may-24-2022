@@ -15,11 +15,4 @@ export class MarvelSharedAppsEffects {
             })
         ), { dispatch: false }
     );
-
-    showErrorHideSpinner$ = createEffect(
-        () => this._actions.pipe(
-            ofType(setErrorMessage),
-            map(() => toggleLoader({isLoading: false }))
-        )
-    );
 }

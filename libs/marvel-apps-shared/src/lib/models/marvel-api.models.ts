@@ -18,4 +18,5 @@ export interface LoadCharacterResponse {
       extension: string;
       thumbnailUrl: string;
     };
+    isFavorite?: boolean;
   }

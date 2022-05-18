@@ -9,7 +9,7 @@ import { appReducer } from "./reducer/marvel-shared-apps.reducer";
     imports: [
         CommonModule,
         EffectsModule.forRoot([MarvelSharedAppsEffects]),
-        StoreModule.forRoot(appReducer)
+        StoreModule.forRoot({'app': appReducer})
     ],
     exports: [
         EffectsModule, StoreModule
