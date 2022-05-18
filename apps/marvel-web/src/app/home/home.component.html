@@ -1,11 +1,11 @@
 <main class="home-container" *ngIf="viewModel$ | async as viewModel">
     <h1>Characters</h1>
-    <section class="characters-section">
+    <div class="characters-section">
         <div class="characters-container" *ngFor="let character of viewModel.characters">
             <span>{{character.name}}</span>
             <div>
                 <img [src]="domSanitizer.bypassSecurityTrustUrl(character.thumbnail.thumbnailUrl)" />
             </div>
         </div>
-    </section>
+    </div>
 </main>

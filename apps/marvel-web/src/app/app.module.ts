@@ -19,11 +19,11 @@ import {MarvelHomeModule} from '@pmt/marvel-home-module';
     AppRoutingModule,
     MatToolbarModule,
     HttpClientModule,
-    MarvelHomeModule,
     MatProgressSpinnerModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({})
+    StoreDevtoolsModule.instrument({}),
+    MarvelHomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

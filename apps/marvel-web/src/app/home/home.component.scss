@@ -2,10 +2,11 @@ h1 {
     margin: 1rem;
 }
 .characters-section {
-    display: inline-flex;
-    overflow: scroll;
-    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
     .characters-container {
         padding: 1rem;
+        width: 150px;
+        height: 150px;
     }
 }

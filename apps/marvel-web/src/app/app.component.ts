@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@pmt/marvel-home-module';
 import { getIsLoading } from '@pmt/marvel-home-module';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   selector: 'pmt-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
 
