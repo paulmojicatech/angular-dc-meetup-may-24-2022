@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { HomeComponentStateService, HomeComponentViewModel } from '@pmt/marvel-home-module';
 import { Observable } from 'rxjs';
 
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   
   viewModel$!: Observable<HomeComponentViewModel>;
 
-  constructor(private _componentStateSvc: HomeComponentStateService) {}
+  constructor(public domSanitizer: DomSanitizer, private _componentStateSvc: HomeComponentStateService) {}
 
   ngOnInit(): void {
     this.viewModel$ = this._componentStateSvc.getViewModel();

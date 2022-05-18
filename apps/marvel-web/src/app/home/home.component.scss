@@ -1,0 +1,11 @@
+h1 {
+    margin: 1rem;
+}
+.characters-section {
+    display: inline-flex;
+    overflow: scroll;
+    width: 100vw;
+    .characters-container {
+        padding: 1rem;
+    }
+}

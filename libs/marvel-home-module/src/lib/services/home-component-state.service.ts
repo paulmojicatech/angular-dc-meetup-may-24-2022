@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { MarvelApiService } from '@pmt/marvel-apps-shared';
 import { BehaviorSubject, combineLatest, filter, map, merge, Observable, tap } from 'rxjs';
@@ -25,13 +26,22 @@ export class HomeComponentStateService {
     this._store.dispatch(loadCharacters({apiReq}));
     const isLoading$ = this._store.select(getIsCharactersLoaded);
     const characters$ = this._store.select(getCharacters).pipe(
-      filter(characters => !!characters)
+      filter(characters => !!characters),
+      map(characterers => {
+        return characterers?.map(character => {
+          console.log('URL', `${character.thumbnail.path}/standard_large.${character.thumbnail.extension}`);
+          const thumbnailUrl = `${character.thumbnail.path}/standard_large.${character.thumbnail.extension}`;
+          const updatedThumbnail = {...character.thumbnail, thumbnailUrl};
+          return {...character, thumbnail: updatedThumbnail};
+        })
+      })
     );
     const reactiveStream$ = combineLatest([isLoading$, characters$]).pipe(
       map(([isLoading, characters]) => {
         return {isLoading, characters};
       }),
       tap(viewModel => {
+        console.log('VM', viewModel);
         this._homeViewModelSub.next(viewModel);
       })
     );

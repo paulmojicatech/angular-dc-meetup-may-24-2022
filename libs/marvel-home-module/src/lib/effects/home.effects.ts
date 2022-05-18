@@ -4,7 +4,7 @@ import { MarvelApiService } from "@pmt/marvel-apps-shared";
 import { catchError, filter, map, switchMap } from "rxjs";
 import { loadCharacters, loadCharactersSuccess, setHomeError, toggleLoader } from "../actions/home.actions";
 import { HomeUtilService } from "../services/home-util.service";
-import { MarvelHttpService } from "../services/marvel-http.service";
+import { MarvelHttpService } from "@pmt/marvel-apps-shared";
 @Injectable()
 export class HomeEffects {
     constructor(private _actions$: Actions, private _marvelHttpSvc: MarvelHttpService, private _homeUtilSvc: HomeUtilService){}

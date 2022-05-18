@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { Character, LoadCharacterResponse } from '../models/home-module.model';
+import { Character, LoadCharacterResponse } from '../models/marvel-api.models';
 
 @Injectable({
   providedIn: 'root',

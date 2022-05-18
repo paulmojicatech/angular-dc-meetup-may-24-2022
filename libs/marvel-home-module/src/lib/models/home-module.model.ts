@@ -1,23 +1,5 @@
-export interface LoadCharacterResponse {
-  attributionText: string;
-  data: {
-    offset: number;
-    limit: number;
-    total: number;
-    count: number;
-    results: Character[];
-  };
-}
+import { Character } from '@pmt/marvel-apps-shared';
 
-export interface Character {
-  id: number;
-  name: string;
-  description: string;
-  thumbnail: {
-    path: string;
-    extension: string;
-  };
-}
 
 export interface HomeModuleState {
     characters: Character[] | undefined;
