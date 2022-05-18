@@ -29,7 +29,6 @@ export class HomeComponentStateService {
       filter(characters => !!characters),
       map(characterers => {
         return characterers?.map(character => {
-          console.log('URL', `${character.thumbnail.path}/standard_large.${character.thumbnail.extension}`);
           const thumbnailUrl = `${character.thumbnail.path}/standard_large.${character.thumbnail.extension}`;
           const updatedThumbnail = {...character.thumbnail, thumbnailUrl};
           return {...character, thumbnail: updatedThumbnail};

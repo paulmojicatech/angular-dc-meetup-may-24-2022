@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MarvelHomeModule} from '@pmt/marvel-home-module';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,6 +19,7 @@ import {MarvelHomeModule} from '@pmt/marvel-home-module';
     BrowserAnimationsModule,
     AppRoutingModule,
     MatToolbarModule,
+    MatButtonModule,
     HttpClientModule,
     MatProgressSpinnerModule,
     StoreModule.forRoot({}),
