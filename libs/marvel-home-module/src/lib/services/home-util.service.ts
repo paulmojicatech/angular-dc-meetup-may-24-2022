@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { AppState } from '@pmt/marvel-apps-shared';
 import { Observable, take } from 'rxjs';
-import { AppState } from '../models/home-module.model';
 import { getIsCharactersLoaded } from '../selectors/home.selectors';
 
 @Injectable({

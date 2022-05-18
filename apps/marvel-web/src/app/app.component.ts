@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '@pmt/marvel-home-module';
-import { getIsLoading } from '@pmt/marvel-home-module';
+import { AppState } from '@pmt/marvel-apps-shared';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'pmt-root',
@@ -16,6 +15,6 @@ export class AppComponent implements OnInit {
   constructor(private _store: Store<AppState>){}
 
   ngOnInit(): void {
-      this.isLoading$ = this._store.select(getIsLoading);
+      this.isLoading$ = this._store.select('isLoading');
   }
 }

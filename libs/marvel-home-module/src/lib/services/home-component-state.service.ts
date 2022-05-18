@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { MarvelApiService } from '@pmt/marvel-apps-shared';
+import { AppState, MarvelApiService } from '@pmt/marvel-apps-shared';
 import { BehaviorSubject, combineLatest, filter, map, merge, Observable, tap } from 'rxjs';
 import { loadCharacters } from '../actions/home.actions';
-import { AppState, HomeComponentViewModel } from '../models/home-module.model';
+import { HomeComponentViewModel } from '../models/home-module.model';
 import { getCharacters, getIsCharactersLoaded } from '../selectors/home.selectors';
-
 @Injectable()
 
 export class HomeComponentStateService {

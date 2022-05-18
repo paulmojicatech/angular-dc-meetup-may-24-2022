@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "marvel-apps-shared": "libs/marvel-apps-shared",
+    "marvel-character-detail": "libs/marvel-character-detail",
     "marvel-home-module": "libs/marvel-home-module",
     "marvel-ionic": "apps/marvel-ionic",
     "marvel-ionic-e2e": "apps/marvel-ionic-e2e",

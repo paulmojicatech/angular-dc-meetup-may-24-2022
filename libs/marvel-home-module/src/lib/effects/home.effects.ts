@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import { MarvelApiService } from "@pmt/marvel-apps-shared";
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { MarvelHttpService, setErrorMessage, toggleLoader } from "@pmt/marvel-apps-shared";
 import { catchError, filter, map, switchMap } from "rxjs";
-import { loadCharacters, loadCharactersSuccess, setHomeError, toggleLoader } from "../actions/home.actions";
+import { loadCharacters, loadCharactersSuccess } from "../actions/home.actions";
 import { HomeUtilService } from "../services/home-util.service";
-import { MarvelHttpService } from "@pmt/marvel-apps-shared";
 @Injectable()
 export class HomeEffects {
     constructor(private _actions$: Actions, private _marvelHttpSvc: MarvelHttpService, private _homeUtilSvc: HomeUtilService){}
@@ -18,32 +17,25 @@ export class HomeEffects {
             )),
             switchMap(action => this._marvelHttpSvc.loadCharacters(action.apiReq).pipe(
                 map(characters => loadCharactersSuccess({characters})),
-                catchError(err => [setHomeError({errorMsg: err})])
+                catchError((err) => [setErrorMessage({errorMsg: `${err}`})])
             ))
         )
     );
 
-    loadCharacterShowLoader$ = createEffect(
+    loadCharactersShowLoader$ = createEffect(
         () => this._actions$.pipe(
             ofType(loadCharacters),
-            switchMap(() => this._homeUtilSvc.getIsCharactersLoaded().pipe(
-                filter(isLoaded => !isLoaded)
-            )),
+            switchMap(() => this._homeUtilSvc.getIsCharactersLoaded()),
+            filter(isLoaded => !isLoaded),
             map(() => toggleLoader({isLoading: true}))
         )
     );
 
-    loadCharacterDismissLoaderOnSucccess$ = createEffect(
+    loadCharactersSuccessHideSpinner$ = createEffect(
         () => this._actions$.pipe(
             ofType(loadCharactersSuccess),
-            map(() => toggleLoader({isLoading: false}))
+            map(() => toggleLoader({isLoading: false }))
         )
     );
 
-    loadCharacterDismissLoaderOnFail$ = createEffect(
-        () => this._actions$.pipe(
-            ofType(setHomeError),
-            map(() => toggleLoader({isLoading: false}))
-        )
-    );
 }

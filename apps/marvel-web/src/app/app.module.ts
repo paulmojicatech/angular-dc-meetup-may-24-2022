@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MarvelHomeModule} from '@pmt/marvel-home-module';
 import { MatButtonModule } from '@angular/material/button';
+import {MarvelAppsSharedModule} from '@pmt/marvel-apps-shared';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,8 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    MarvelAppsSharedModule,
     StoreDevtoolsModule.instrument({}),
     MarvelHomeModule,
   ],

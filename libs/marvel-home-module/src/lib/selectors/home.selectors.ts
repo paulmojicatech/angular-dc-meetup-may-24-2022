@@ -12,8 +12,3 @@ export const getCharacters = createSelector(
     homeModuleState,
     state => state.characters
 );
-
-export const getIsLoading = createSelector(
-    homeModuleState,
-    state => state.isLoading
-);

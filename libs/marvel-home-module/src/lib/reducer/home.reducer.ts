@@ -1,10 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadCharactersSuccess, toggleLoader } from '../actions/home.actions';
+import { loadCharactersSuccess } from '../actions/home.actions';
 import { HomeModuleState } from '../models/home-module.model';
 
 const initialState: HomeModuleState = {
-  characters: undefined,
-  isLoading: false,
+  characters: undefined
 };
 
 export const homeModuleReducer = createReducer(
@@ -12,6 +11,5 @@ export const homeModuleReducer = createReducer(
   on(loadCharactersSuccess, (state, { characters }) => ({
     ...state,
     characters,
-  })),
-  on(toggleLoader, (state, { isLoading }) => ({ ...state, isLoading }))
+  }))
 );
