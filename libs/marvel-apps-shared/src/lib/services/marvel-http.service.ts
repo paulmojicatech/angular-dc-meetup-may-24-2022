@@ -12,7 +12,7 @@ export class MarvelHttpService {
   loadCharacters(apiReq: string): Observable<Character[]> {
     return this._httpClient
       .get<LoadCharacterResponse>(
-        `https://gateway.marvel.com:443/v1/public/characters?limit=35&${apiReq}`
+        `https://gateway.marvel.com:443/v1/public/characters?limit=30&${apiReq}`
       )
       .pipe(
         map((httpResp) => {

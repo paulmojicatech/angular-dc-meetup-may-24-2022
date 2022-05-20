@@ -1,3 +1,79 @@
-<main *ngIf="viewModel$ | async as viewModel">
-    
+<main class="character-detail-screeen-container" *ngIf="viewModel$ | async as viewModel">
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header *ngIf="!!viewModel.character?.urls?.length">
+                <div class="panel-header-container">
+                    <span class="character-name">{{viewModel.character?.name}}</span>
+                    <a mat-button color="primary" [href]="viewModel.character?.urls![0]?.url" target="_blank">Learn More Online</a>
+                    <span>
+                        <mat-icon *ngIf="viewModel.character?.isFavorite; else notFavorite">start</mat-icon>
+                        <ng-template #notFavorite>
+                            <mat-icon>star_border</mat-icon>
+                        </ng-template>
+                    </span>
+                </div>
+            </mat-expansion-panel-header>
+            <!-- comics -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Comics</mat-panel-title>
+                    <mat-panel-description>Comics that {{viewModel.character?.name}} has appeared in.</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="comic-details">
+                    <ul>
+                        <li *ngFor="let comic of viewModel.character?.comics?.items">
+                            {{comic.name}}
+                        </li>
+                    </ul>
+                </div>
+            </mat-expansion-panel>
+
+            <!-- stories -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Stories</mat-panel-title>
+                    <mat-panel-description>Stories that {{viewModel.character?.name}} has appeared in.</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="comic-details">
+                    <ul>
+                        <li *ngFor="let story of viewModel.character?.stories?.items">
+                            {{story.name}}
+                        </li>
+                    </ul>
+                </div>
+            </mat-expansion-panel>
+
+            <!-- series -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Series</mat-panel-title>
+                    <mat-panel-description>Series that {{viewModel.character?.name}} has appeared in.</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="comic-details">
+                    <ul>
+                        <li *ngFor="let seriesInstance of viewModel.character?.series?.items">
+                            {{seriesInstance.name}}
+                        </li>
+                    </ul>
+                </div>
+            </mat-expansion-panel>
+
+            <!-- events -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Events</mat-panel-title>
+                    <mat-panel-description>Events that {{viewModel.character?.name}} has appeared in.</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="comic-details">
+                    <ul>
+                        <li *ngFor="let event of viewModel.character?.events?.items">
+                            {{event.name}}
+                        </li>
+                    </ul>
+                </div>
+            </mat-expansion-panel>
+
+        </mat-expansion-panel>
+        
+    </mat-accordion>
 </main>

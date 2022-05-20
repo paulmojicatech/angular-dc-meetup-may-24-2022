@@ -8,6 +8,12 @@ export interface LoadCharacterResponse {
       results: Character[];
     };
   }
+
+  export enum UrlType {
+    DETAIL = 'detail',
+    WIKI = 'wiki',
+    COMIC_LINK = 'comicLink'
+  }
   
   export interface Character {
     id: number;
@@ -19,4 +25,19 @@ export interface LoadCharacterResponse {
       thumbnailUrl: string;
     };
     isFavorite?: boolean;
+    urls: {
+      type: UrlType;
+      url: string;
+    }[];
+    comics: MarvelEntity;
+    series: MarvelEntity;
+    stories: MarvelEntity;
+    events: MarvelEntity;
+  }
+
+  export interface MarvelEntity {
+    available: number;
+    items: {
+        name: string;
+      }[]
   }
