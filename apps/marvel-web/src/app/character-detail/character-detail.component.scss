@@ -1,0 +1,13 @@
+.character-detail-screeen-container {
+    margin: 1rem 3rem;
+    .panel-header-container {
+        display: inline-flex;
+        width: 100%;
+        justify-content: space-between;
+        .character-name {
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+    }
+}
+

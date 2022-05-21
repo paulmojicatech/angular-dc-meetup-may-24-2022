@@ -1,0 +1,13 @@
+.spinner-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbar-container {
+    display: inline-flex;
+    width: 100vw;
+    justify-content: space-between;
+}

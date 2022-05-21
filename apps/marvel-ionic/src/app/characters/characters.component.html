@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Characters</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="viewModel$ | async as viewModel">
+    <ion-item *ngFor="let character of viewModel.characters">
+        <ion-avatar>
+            <img [src]="character.thumbnail.thumbnailUrl" />
+        </ion-avatar>
+        
+    <ion-label>{{character.name}}</ion-label>
+    </ion-item>
+</ion-content>

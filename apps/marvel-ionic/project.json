@@ -9,7 +9,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/apps/marvel-ionic",
+        "outputPath": "apps/marvel-ionic/www",
         "index": "apps/marvel-ionic/src/index.html",
         "main": "apps/marvel-ionic/src/main.ts",
         "polyfills": "apps/marvel-ionic/src/polyfills.ts",

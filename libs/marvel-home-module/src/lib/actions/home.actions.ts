@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Character } from "../models/home-module.model";
+import { Character } from "@pmt/marvel-apps-shared";
 
 export const loadCharacters = createAction(
     '[Home] Load Characters',
@@ -11,12 +11,7 @@ export const loadCharactersSuccess = createAction(
     props<{characters: Character[]}>()
 );
 
-export const setHomeError = createAction(
-    '[Home] Set Home Error',
-    props<{errorMsg: string}>()
+export const setCurrentCharacter = createAction(
+    '[] Set Current Character',
+    props<{characterId: number}>()
 );
-
-export const toggleLoader = createAction(
-    '[Home] Toggle Loader Visisbility',
-    props<{isLoading: boolean}>()
-)

@@ -1,3 +1,15 @@
-<mat-toolbar color="primary">Marvel Goodies</mat-toolbar>
+<mat-toolbar color="primary">
+    <div class="toolbar-container">
+        <span>Marvel Goodies</span>
+        <div class="menu--item-container">
+            <button mat-button routerLink="/home">Characters</button>
+        </div>
+
+    </div>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
+
+<div class="spinner-container"  *ngIf="isLoading$ | async">
+    <mat-spinner></mat-spinner>
+</div>

@@ -1,28 +1,11 @@
-export interface LoadCharacterResponse {
-  attributionText: string;
-  data: {
-    offset: number;
-    limit: number;
-    total: number;
-    count: number;
-    results: Character[];
-  };
-}
+import { Character } from '@pmt/marvel-apps-shared';
 
-export interface Character {
-  id: number;
-  name: string;
-  description: string;
-  thumbnail: {
-    path: string;
-    extension: string;
-  };
-}
 
 export interface HomeModuleState {
     characters: Character[] | undefined;
-    isLoading: boolean;
+    currentCharacter: Character | undefined;
 }
+export interface HomeComponentViewModel {
+  characters: Character[] | undefined;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AppState {}
+}

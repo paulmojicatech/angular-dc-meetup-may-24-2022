@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@pmt/marvel-apps-shared": ["libs/marvel-apps-shared/src/index.ts"],
+      "@pmt/marvel-character-detail": [
+        "libs/marvel-character-detail/src/index.ts"
+      ],
       "@pmt/marvel-home-module": ["libs/marvel-home-module/src/index.ts"]
     }
   },

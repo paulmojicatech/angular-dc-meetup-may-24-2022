@@ -40,3 +40,6 @@ Thumbs.db
 
 .angular
 libs/marvel-apps-shared/src/lib/keys.ts
+
+**/www
+**/ios
