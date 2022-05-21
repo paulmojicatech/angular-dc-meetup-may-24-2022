@@ -17,3 +17,8 @@ export const getCurrentCharacter = createSelector(
     homeModuleState,
     state => state.currentCharacter
 );
+
+export const getRecordPullCount = createSelector(
+    homeModuleState,
+    state => state.recordsFetched
+);

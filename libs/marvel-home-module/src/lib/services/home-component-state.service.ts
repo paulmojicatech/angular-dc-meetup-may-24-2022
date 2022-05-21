@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, Character, MarvelApiService } from '@pmt/marvel-apps-shared';
-import { BehaviorSubject, combineLatest, filter, map, merge, Observable, tap } from 'rxjs';
-import { loadCharacters, setCurrentCharacter } from '../actions/home.actions';
+import { AppState, MarvelApiService } from '@pmt/marvel-apps-shared';
+import { BehaviorSubject, filter, map, merge, Observable, tap } from 'rxjs';
+import { getNextBatchOfCharacters, loadCharacters, setCurrentCharacter } from '../actions/home.actions';
 import { HomeComponentViewModel } from '../models/home-module.model';
-import { getCharacters, getIsCharactersLoaded } from '../selectors/home.selectors';
+import { getCharacters } from '../selectors/home.selectors';
 @Injectable()
 
 export class HomeComponentStateService {
@@ -40,5 +40,10 @@ export class HomeComponentStateService {
 
   viewCharacterDetails(characterId: number): void {
     this._store.dispatch(setCurrentCharacter({characterId}));
+  }
+
+  handleScrollEvent(): void {
+    const apiReq = this._marvelApiSvc.getApiHash();
+    this._store.dispatch(getNextBatchOfCharacters({apiReq}));
   }
 }
