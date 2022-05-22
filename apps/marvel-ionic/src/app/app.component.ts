@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState, getAppState } from '@pmt/marvel-apps-shared';
+import { map, Observable } from 'rxjs';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+
+  isLoading$!: Observable<boolean>;
+
+  constructor(private _store: Store<AppState>) {}
+
+  ngOnInit(): void {
+      this.isLoading$ = this._store.select(getAppState).pipe(
+        map(appState => appState.isLoading)
+      );
+  }
 }

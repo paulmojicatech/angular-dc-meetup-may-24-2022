@@ -16,12 +16,60 @@
     <!-- Modal -->
     <ion-modal #modal [canDismiss]="true" [presentingElement]="routerOutlet.nativeEl">
         <ng-template>
-            <ion-content>
+            <ion-content *ngIf="currentCharacter$ | async as currentCharacter">
                 <ion-header>
                     <ion-toolbar>
-                        <ion-title>{{(currentCharacter$ | async)?.name}}</ion-title>
+                        <ion-title>{{currentCharacter?.name}}</ion-title>
                     </ion-toolbar>
                 </ion-header>
+                <ion-card>
+                    <ion-card-header>
+                        <img [src]="currentCharacter?.thumbnail!.thumbnailUrl" />
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-accordion-group>
+                            <!-- comics -->
+                            <ion-accordion value="comics">
+                                <ion-item slot="header">
+                                    <ion-label>Comics</ion-label>
+                                </ion-item>
+                                <ion-list slot="content">
+                                    <ion-item *ngFor="let comic of currentCharacter.comics?.items">{{comic.name}}</ion-item>
+                                </ion-list>
+                            </ion-accordion>
+
+                            <!-- stories -->
+                            <ion-accordion value="stories">
+                                <ion-item slot="header">
+                                    <ion-label>Stories</ion-label>
+                                </ion-item>
+                                <ion-list slot="content">
+                                    <ion-item *ngFor="let story of currentCharacter.stories?.items">{{story.name}}</ion-item>
+                                </ion-list>
+                            </ion-accordion>
+
+                            <!-- series -->
+                            <ion-accordion value="series">
+                                <ion-item slot="header">
+                                    <ion-label>Series</ion-label>
+                                </ion-item>
+                                <ion-list slot="content">
+                                    <ion-item *ngFor="let currentSeries of currentCharacter.series?.items">{{currentSeries.name}}</ion-item>
+                                </ion-list>
+                            </ion-accordion>
+
+                            <!-- events -->
+                            <ion-accordion value="events">
+                                <ion-item slot="header">
+                                    <ion-label>Events</ion-label>
+                                </ion-item>
+                                <ion-list slot="content">
+                                    <ion-item *ngFor="let event of currentCharacter.events?.items">{{event.name}}</ion-item>
+                                </ion-list>
+                            </ion-accordion>
+                        </ion-accordion-group>
+                    </ion-card-content>
+                </ion-card>
             </ion-content>
         </ng-template>
     </ion-modal>

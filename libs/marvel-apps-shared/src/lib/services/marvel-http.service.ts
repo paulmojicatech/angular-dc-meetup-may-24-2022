@@ -16,7 +16,12 @@ export class MarvelHttpService {
       )
       .pipe(
         map((httpResp) => {
-          return {characters: httpResp.data.results, totalRecords: httpResp.data.total};
+          const characters = httpResp.data.results?.map(character => {
+            const thumbnailUrl = `${character.thumbnail.path}/standard_large.${character.thumbnail.extension}`;
+            const updatedThumbnail = {...character.thumbnail, thumbnailUrl};
+            return {...character, thumbnail: updatedThumbnail};
+          });
+          return { characters, totalRecords: httpResp.data.total};
         }),
         catchError((err) => throwError(() => new Error(`${err}`)))
       );

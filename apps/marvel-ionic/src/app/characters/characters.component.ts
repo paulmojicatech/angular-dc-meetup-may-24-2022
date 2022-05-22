@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet } from '@ionic/angular';
 import { Character } from '@pmt/marvel-apps-shared';
 import { HomeComponentViewModel, IonicHomeComponentStateService } from '@pmt/marvel-home-module';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'pmt-characters',
