@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HomeComponentStateService, HomeComponentViewModel } from '@pmt/marvel-home-module';
-import { fromEvent, Observable, Subject, takeUntil } from 'rxjs';
+import { debounceTime, fromEvent, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'pmt-home',
@@ -23,10 +23,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
       fromEvent(document, 'scroll').pipe(
+        debounceTime(500),
         takeUntil(this._componentDestroyed$)
-      ).subscribe(() => {
-        console.log('SCROLL');
-        this.componentStateSvc.handleScrollEvent();
+      ).subscribe((scrollEv) => {
+        console.log('SCROLL', scrollEv);
+        this.componentStateSvc.handleScrollEvent(scrollEv);
       });
   }
   ngOnDestroy(): void {

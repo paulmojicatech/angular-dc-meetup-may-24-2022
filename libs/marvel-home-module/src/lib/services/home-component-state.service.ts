@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, MarvelApiService } from '@pmt/marvel-apps-shared';
@@ -10,7 +11,8 @@ import { getCharacters } from '../selectors/home.selectors';
 export class HomeComponentStateService {
 
   readonly INITIAL_STATE: HomeComponentViewModel = {
-    characters: undefined
+    characters: undefined,
+    scrollTop: 0
   }
 
   private _homeViewModelSub$ = new BehaviorSubject<HomeComponentViewModel>(this.INITIAL_STATE);
@@ -29,7 +31,7 @@ export class HomeComponentStateService {
           const updatedThumbnail = {...character.thumbnail, thumbnailUrl};
           return {...character, thumbnail: updatedThumbnail};
         }) ?? [];
-        return {characters};
+        return {characters, scrollTop: this._homeViewModelSub$.getValue().scrollTop};
       }),
       tap(viewModel => {
         this._homeViewModelSub$.next(viewModel);
@@ -42,8 +44,25 @@ export class HomeComponentStateService {
     this._store.dispatch(setCurrentCharacter({characterId}));
   }
 
-  handleScrollEvent(): void {
-    const apiReq = this._marvelApiSvc.getApiHash();
-    this._store.dispatch(getNextBatchOfCharacters({apiReq}));
+  handleScrollEvent(scrollEv: any): void {
+    const currentState = this._homeViewModelSub$.getValue();
+    const shouldFetch = this.shouldFetchMoreRecords(currentState, scrollEv);
+    if(shouldFetch) {
+      const apiReq = this._marvelApiSvc.getApiHash();
+      this._store.dispatch(getNextBatchOfCharacters({apiReq}));
+    }
+    
+  }
+
+  private shouldFetchMoreRecords(currentState: HomeComponentViewModel, scrollEvent: any): boolean {
+    const scrollTopFromEv = scrollEvent.target?.scrollingElement?.scrollTop;
+    if (currentState.scrollTop + 100 < scrollTopFromEv) {
+      this._homeViewModelSub$.next({
+        ...currentState,
+        scrollTop: scrollEvent.target.scrollingElement.scrollTop
+      })
+      return true;
+    }
+    return false;
   }
 }
