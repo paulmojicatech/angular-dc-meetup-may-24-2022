@@ -28,6 +28,19 @@
                     </ion-card-header>
                     <ion-card-content>
                         <ion-accordion-group>
+                            <!-- description -->
+                            <ion-accordion value="description">
+                                <ion-item slot="header">
+                                    <ion-label>Description</ion-label>
+                                </ion-item>
+                                    <div slot="content" class="description-container">
+                                        <div *ngIf="currentCharacter.description">{{currentCharacter.description}}</div>
+                                        <ion-button *ngIf="currentCharacter.urls?.length" [href]="currentCharacter.urls[0].url">Learn More</ion-button>
+                                    </div>
+                                   
+                             
+                            </ion-accordion>
+
                             <!-- comics -->
                             <ion-accordion value="comics">
                                 <ion-item slot="header">
