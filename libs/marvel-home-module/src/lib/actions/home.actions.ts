@@ -8,10 +8,20 @@ export const loadCharacters = createAction(
 
 export const loadCharactersSuccess = createAction(
     '[Home] Load Characters Success',
-    props<{characters: Character[]}>()
+    props<{characters: Character[]; totalRecords: number;}>()
 );
 
 export const setCurrentCharacter = createAction(
-    '[] Set Current Character',
+    '[Home] Set Current Character',
     props<{characterId: number}>()
+);
+
+export const getNextBatchOfCharacters = createAction(
+    '[Home] Get Next Batch Of Characters',
+    props<{apiReq: string}>()
+);
+
+export const getNextBatchOfCharactersSuccess = createAction(
+    '[Home] Get Next Batch Of Characters Success',
+    props<{characters: Character[]}>()
 );

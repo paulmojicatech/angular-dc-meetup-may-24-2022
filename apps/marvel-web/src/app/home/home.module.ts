@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
-import { HomeRouterModule } from './home-routing.module';
+import { NgModule } from '@angular/core';
 import { MarvelHomeModule } from '@pmt/marvel-home-module';
+import { HomeRouterModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
 
 @NgModule({
   declarations: [HomeComponent],
