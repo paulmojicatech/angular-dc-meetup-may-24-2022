@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, MarvelApiService } from '@pmt/marvel-apps-shared';
 import { BehaviorSubject, filter, map, merge, Observable, tap } from 'rxjs';
-import { getNextBatchOfCharacters, loadCharacters, setCurrentCharacter } from '../actions/home.actions';
+import { getNextBatchOfCharacters, loadCharacters } from '../actions/home.actions';
 import { HomeComponentViewModel } from '../models/home-module.model';
 import { getCharacters } from '../selectors/home.selectors';
-@Injectable()
 
-export class HomeComponentStateService {
+export abstract class HomeComponentStateService {
 
   readonly INITIAL_STATE: HomeComponentViewModel = {
     characters: undefined,
@@ -38,10 +36,6 @@ export class HomeComponentStateService {
       })
     );
     return merge(this.viewModel$, characters$);
-  }
-
-  viewCharacterDetails(characterId: number): void {
-    this._store.dispatch(setCurrentCharacter({characterId}));
   }
 
   handleScrollEvent(scrollEv: any): void {
