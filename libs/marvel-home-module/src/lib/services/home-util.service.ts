@@ -19,6 +19,7 @@ export class HomeUtilService {
 
   getRecordCountAlreadyFetched(): Observable<number> {
     return this._store.select(getRecordPullCount).pipe(
+      take(1),
       filter(recordCount => !!recordCount)
     ) as Observable<number>;
   }
@@ -27,7 +28,8 @@ export class HomeUtilService {
     return this._store.select(homeModuleState).pipe(
       map(homeState => {
         return (homeState.totalRecordCount as number) > (homeState.recordsFetched as number);
-      })
+      }),
+      take(1)
     )
   }
 
