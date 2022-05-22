@@ -12,7 +12,7 @@ export class MarvelHttpService {
   loadCharacters(apiReq: string): Observable<{characters: Character[]; totalRecords: number}> {
     return this._httpClient
       .get<LoadCharacterResponse>(
-        `https://gateway.marvel.com:443/v1/public/characters?limit=30&${apiReq}`
+        `https://gateway.marvel.com:443/v1/public/characters?limit=50&${apiReq}`
       )
       .pipe(
         map((httpResp) => {
@@ -25,5 +25,14 @@ export class MarvelHttpService {
         }),
         catchError((err) => throwError(() => new Error(`${err}`)))
       );
+  }
+
+  getNextBatchOfCharacters(apiReq: string, currentOffset: number): Observable<Character[]> {
+    return this._httpClient.get<LoadCharacterResponse>(`https://gateway.marvel.com:443/v1/public/characters?limit=50&offset=${currentOffset}&${apiReq}`).pipe(
+      map(httpResp => {
+        return httpResp.data.results;
+      }),
+      catchError(err => throwError(() => new Error(`${err}`)))
+    );
   }
 }

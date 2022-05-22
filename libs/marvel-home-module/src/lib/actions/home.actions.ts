@@ -23,5 +23,5 @@ export const getNextBatchOfCharacters = createAction(
 
 export const getNextBatchOfCharactersSuccess = createAction(
     '[Home] Get Next Batch Of Characters Success',
-    props<{characterId: number, isMobile: boolean}>()
+    props<{characters: Character[]}>()
 );

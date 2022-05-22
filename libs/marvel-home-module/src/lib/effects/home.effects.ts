@@ -55,11 +55,10 @@ export class HomeEffects {
                 map(() => action)
             )),
             switchMap(action => this._homeUtilSvc.getRecordCountAlreadyFetched().pipe(
-                map(recordsPulled => ({recordsPulled, action}))
+                map(recordsFetched => ({action, recordsFetched}))
             )),
-            switchMap(newStream => this._marvelHttpSvc.getNextBatchOfCharacters(newStream.action.apiReq, newStream.recordsPulled + 1).pipe(
-                map(characters => getNextBatchOfCharactersSuccess({characters})),
-                catchError(err => [setErrorMessage({errorMsg: `${err}`})])
+            switchMap(newStream => this._marvelHttpSvc.getNextBatchOfCharacters(newStream.action.apiReq, newStream.recordsFetched).pipe(
+                map(resp => getNextBatchOfCharactersSuccess({characters: resp}))
             ))
         )
     );
