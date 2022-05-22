@@ -13,10 +13,10 @@ export abstract class HomeComponentStateService {
     scrollTop: 0
   }
 
-  private _homeViewModelSub$ = new BehaviorSubject<HomeComponentViewModel>(this.INITIAL_STATE);
+  protected _homeViewModelSub$ = new BehaviorSubject<HomeComponentViewModel>(this.INITIAL_STATE);
   viewModel$ = this._homeViewModelSub$.asObservable();
 
-  constructor(private _store: Store<AppState>, private _marvelApiSvc: MarvelApiService){}
+  constructor(protected _store: Store<AppState>, protected _marvelApiSvc: MarvelApiService){}
 
   getViewModel(): Observable<HomeComponentViewModel> {
     const apiReq = this._marvelApiSvc.getApiHash();

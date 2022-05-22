@@ -1,21 +1,26 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
-import { HomeComponentStateService, HomeComponentViewModel } from '@pmt/marvel-home-module';
+import { Component, OnInit } from '@angular/core';
+import { IonRouterOutlet } from '@ionic/angular';
+import { Character } from '@pmt/marvel-apps-shared';
+import { HomeComponentViewModel, IonicHomeComponentStateService } from '@pmt/marvel-home-module';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'pmt-characters',
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.scss'],
-  providers: [HomeComponentStateService]
+  providers: [IonicHomeComponentStateService]
 })
 export class CharactersComponent implements OnInit {
 
   viewModel$!: Observable<HomeComponentViewModel>;
+  currentCharacter$!: Observable<Character>;
 
-  constructor(private _homeStateSvc: HomeComponentStateService){}
+  constructor(public routerOutlet: IonRouterOutlet, public homeStateSvc: IonicHomeComponentStateService){}
 
   ngOnInit(): void {
-      this.viewModel$ = this._homeStateSvc.getViewModel();
+      this.viewModel$ = this.homeStateSvc.getViewModel();
+      this.currentCharacter$ = this.homeStateSvc.getCurrentCharacter();
   }
+
+
 }

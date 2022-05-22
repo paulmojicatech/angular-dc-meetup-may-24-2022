@@ -11,3 +11,4 @@ export interface HomeComponentViewModel {
   characters: Character[] | undefined;
   scrollTop: number;
 }
+

@@ -42,6 +42,7 @@ export class HomeEffects {
     setCurrentCharacterRoute$ = createEffect(
         () => this._actions$.pipe(
             ofType(setCurrentCharacter),
+            filter(action => !action.isMobile),
             tap(() => this._router.navigate(['character-detail']))
         ), { dispatch: false }
     );
