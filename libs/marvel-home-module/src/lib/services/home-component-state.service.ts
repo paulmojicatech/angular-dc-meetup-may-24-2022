@@ -1,24 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, MarvelApiService } from '@pmt/marvel-apps-shared';
 import { BehaviorSubject, filter, map, merge, Observable, tap } from 'rxjs';
-import { getNextBatchOfCharacters, loadCharacters, setCurrentCharacter } from '../actions/home.actions';
+import { getNextBatchOfCharacters, loadCharacters } from '../actions/home.actions';
 import { HomeComponentViewModel } from '../models/home-module.model';
 import { getCharacters } from '../selectors/home.selectors';
-@Injectable()
 
-export class HomeComponentStateService {
+export abstract class HomeComponentStateService {
 
   readonly INITIAL_STATE: HomeComponentViewModel = {
     characters: undefined,
     scrollTop: 0
   }
 
-  private _homeViewModelSub$ = new BehaviorSubject<HomeComponentViewModel>(this.INITIAL_STATE);
+  protected _homeViewModelSub$ = new BehaviorSubject<HomeComponentViewModel>(this.INITIAL_STATE);
   viewModel$ = this._homeViewModelSub$.asObservable();
 
-  constructor(private _store: Store<AppState>, private _marvelApiSvc: MarvelApiService){}
+  constructor(protected _store: Store<AppState>, protected _marvelApiSvc: MarvelApiService){}
 
   getViewModel(): Observable<HomeComponentViewModel> {
     const apiReq = this._marvelApiSvc.getApiHash();
@@ -40,13 +38,9 @@ export class HomeComponentStateService {
     return merge(this.viewModel$, characters$);
   }
 
-  viewCharacterDetails(characterId: number): void {
-    this._store.dispatch(setCurrentCharacter({characterId}));
-  }
-
-  handleScrollEvent(scrollEv: any): void {
+  handleScrollEvent(scrollEv: any, isMobile = false): void {
     const currentState = this._homeViewModelSub$.getValue();
-    const shouldFetch = this.shouldFetchMoreRecords(currentState, scrollEv);
+    const shouldFetch = this.shouldFetchMoreRecords(currentState, scrollEv, isMobile);
     if(shouldFetch) {
       const apiReq = this._marvelApiSvc.getApiHash();
       this._store.dispatch(getNextBatchOfCharacters({apiReq}));
@@ -54,12 +48,12 @@ export class HomeComponentStateService {
     
   }
 
-  private shouldFetchMoreRecords(currentState: HomeComponentViewModel, scrollEvent: any): boolean {
-    const scrollTopFromEv = scrollEvent.target?.scrollingElement?.scrollTop;
+  private shouldFetchMoreRecords(currentState: HomeComponentViewModel, scrollEvent: any, isMobile: boolean): boolean {
+    const scrollTopFromEv = !isMobile ? scrollEvent.target?.scrollingElement?.scrollTop : scrollEvent.detail.currentY;
     if (currentState.scrollTop + 100 < scrollTopFromEv) {
       this._homeViewModelSub$.next({
         ...currentState,
-        scrollTop: scrollEvent.target.scrollingElement.scrollTop
+        scrollTop: scrollTopFromEv
       })
       return true;
     }

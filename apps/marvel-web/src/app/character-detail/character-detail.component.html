@@ -4,6 +4,7 @@
             <mat-expansion-panel-header *ngIf="!!viewModel.character?.urls?.length">
                 <div class="panel-header-container">
                     <span class="character-name">{{viewModel.character?.name}}</span>
+                    <a mat-button color="primary" [href]="viewModel.character?.urls![0]?.url" target="_blank">Learn More Online</a>
                     <span>
                         <mat-icon *ngIf="viewModel.character?.isFavorite; else notFavorite">start</mat-icon>
                         <ng-template #notFavorite>
@@ -12,14 +13,7 @@
                     </span>
                 </div>
             </mat-expansion-panel-header>
-
-            <div class="character-info">
-                <div *ngIf="!!viewModel.character?.description" class="description">
-                    {{viewModel.character?.description}}
-                </div>
-                <a mat-button color="primary" [href]="viewModel.character?.urls![0]?.url" target="_blank">Learn More Online</a>
-            </div>
-
+            
             <!-- comics -->
             <mat-expansion-panel>
                 <mat-expansion-panel-header>

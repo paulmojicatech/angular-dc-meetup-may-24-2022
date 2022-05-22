@@ -13,7 +13,7 @@ export const loadCharactersSuccess = createAction(
 
 export const setCurrentCharacter = createAction(
     '[Home] Set Current Character',
-    props<{characterId: number}>()
+    props<{characterId: number; isMobile: boolean;}>()
 );
 
 export const getNextBatchOfCharacters = createAction(

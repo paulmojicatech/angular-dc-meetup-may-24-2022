@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, getAppState } from '@pmt/marvel-apps-shared';
-import { filter, map, Observable, take } from 'rxjs';
 import { getIsCharactersLoaded, getRecordPullCount, homeModuleState } from '../selectors/home.selectors';
+import { AppState } from '@pmt/marvel-apps-shared';
+import { filter, map, Observable, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

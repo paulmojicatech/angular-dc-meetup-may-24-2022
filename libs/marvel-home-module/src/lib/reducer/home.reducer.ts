@@ -9,7 +9,6 @@ const initialState: HomeModuleState = {
   currentCharacter: undefined,
   totalRecordCount: undefined,
   recordsFetched: undefined
-  
 };
 
 export const homeModuleReducer = createReducer(
@@ -37,4 +36,4 @@ export const homeModuleReducer = createReducer(
         recordsFetched: (state.recordsFetched as number) + characters.length
       }
     })
-);
+  );
