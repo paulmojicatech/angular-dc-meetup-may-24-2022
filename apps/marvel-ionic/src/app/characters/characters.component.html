@@ -4,7 +4,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="viewModel$ | async as viewModel">
+<ion-content scrollEvents="true" #scrollContainer *ngIf="viewModel$ | async as viewModel">
     <ion-item *ngFor="let character of viewModel.characters" (click)="modal.present(); homeStateSvc.viewCharacterDetails(character.id)">
         <ion-avatar>
             <img [src]="character.thumbnail.thumbnailUrl" />
