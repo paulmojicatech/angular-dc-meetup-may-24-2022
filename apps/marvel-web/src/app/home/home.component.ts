@@ -25,9 +25,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     fromEvent(document, 'scroll').pipe(
       debounceTime(500),
       takeUntil(this._componentDestroyed$)
-    ).subscribe((scrollEv) => {
-      console.log('SCROLL', scrollEv);
-      this.componentStateSvc.handleScrollEvent(scrollEv);
+    ).subscribe((scrollEv: any) => {
+      const newScrollTop = scrollEv.target?.scrollingElement?.scrollTop
+      this.componentStateSvc.handleScrollEvent(newScrollTop);
     });
 }
 ngOnDestroy(): void {

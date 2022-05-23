@@ -31,8 +31,9 @@ export class CharactersComponent implements OnInit, AfterViewInit, OnDestroy {
       this.scrollContainer.ionScroll.pipe(
         debounceTime(500),
         takeUntil(this._componentDestroyed$)
-      ).subscribe(scrollEv => {
-        this.homeStateSvc.handleScrollEvent(scrollEv, true);
+      ).subscribe((scrollEv: CustomEvent) => {
+        const newScrollTop = scrollEv.detail.currentY;
+        this.homeStateSvc.handleScrollEvent(newScrollTop);
       })
   }
 

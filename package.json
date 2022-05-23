@@ -66,7 +66,7 @@
     "@ngrx/store": "^13.2.0",
     "@nxtend/ionic-angular": "^13.1.0",
     "dotenv": "^16.0.1",
-    "ionic": "^5.4.16",
+    "ionic": "^4.1.2",
     "ionicons": "^6.0.1",
     "rxjs": "~7.4.0",
     "ts-md5": "^1.2.11",

@@ -38,23 +38,19 @@ export abstract class HomeComponentStateService {
     return merge(this.viewModel$, characters$);
   }
 
-  handleScrollEvent(scrollEv: any, isMobile = false): void {
+  handleScrollEvent(newScrollTop: number): void {
     const currentState = this._homeViewModelSub$.getValue();
-    const shouldFetch = this.shouldFetchMoreRecords(currentState, scrollEv, isMobile);
+    const shouldFetch = this.shouldFetchMoreRecords(currentState.scrollTop, newScrollTop);
     if(shouldFetch) {
+      this._homeViewModelSub$.next({...currentState, scrollTop: newScrollTop});
       const apiReq = this._marvelApiSvc.getApiHash();
       this._store.dispatch(getNextBatchOfCharacters({apiReq}));
     }
     
   }
 
-  private shouldFetchMoreRecords(currentState: HomeComponentViewModel, scrollEvent: any, isMobile: boolean): boolean {
-    const scrollTopFromEv = !isMobile ? scrollEvent.target?.scrollingElement?.scrollTop : scrollEvent.detail.currentY;
-    if (currentState.scrollTop + 100 < scrollTopFromEv) {
-      this._homeViewModelSub$.next({
-        ...currentState,
-        scrollTop: scrollTopFromEv
-      })
+  private shouldFetchMoreRecords(currentScrollTop: number, newScrollTop: number): boolean {
+    if (currentScrollTop + 100 < newScrollTop) {
       return true;
     }
     return false;
