@@ -8,13 +8,15 @@ import { HomeComponentStateService } from '../home-component-state.service';
 
 @Injectable()
 export class IonicHomeComponentStateService extends HomeComponentStateService {
-
-  constructor(protected override _store: Store<AppState>, protected override _marvelApiSvc: MarvelApiService) {
+  constructor(
+    protected override _store: Store<AppState>,
+    protected override _marvelApiSvc: MarvelApiService
+  ) {
     super(_store, _marvelApiSvc);
-   }
+  }
 
-   viewCharacterDetails(characterId: number): void {
-    this._store.dispatch(setCurrentCharacter({characterId, isMobile: true}));
+  viewCharacterDetails(characterId: number): void {
+    this._store.dispatch(setCurrentCharacter({ characterId, isMobile: true }));
   }
 
   getCurrentCharacter(): Observable<Character> {

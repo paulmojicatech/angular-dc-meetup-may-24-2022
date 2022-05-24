@@ -3,15 +3,15 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { IonContent, IonRouterOutlet } from '@ionic/angular';
 import { Character } from '@pmt/marvel-apps-shared';
 import {
   HomeComponentViewModel,
-  IonicHomeComponentStateService,
+  IonicHomeComponentStateService
 } from '@pmt/marvel-home-module';
-import { debounceTime, Observable, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'pmt-characters',
