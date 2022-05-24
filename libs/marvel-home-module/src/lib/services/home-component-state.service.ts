@@ -23,12 +23,7 @@ export abstract class HomeComponentStateService {
     this._store.dispatch(loadCharacters({apiReq}));
     const characters$ = this._store.select(getCharacters).pipe(
       filter(characters => !!characters),
-      map(unprocessedCharacters => {
-        const characters = unprocessedCharacters?.map(character => {
-          const thumbnailUrl = `${character.thumbnail.path}/standard_large.${character.thumbnail.extension}`;
-          const updatedThumbnail = {...character.thumbnail, thumbnailUrl};
-          return {...character, thumbnail: updatedThumbnail};
-        }) ?? [];
+      map(characters => {
         return {characters, scrollTop: this._homeViewModelSub$.getValue().scrollTop};
       }),
       tap(viewModel => {
@@ -38,9 +33,9 @@ export abstract class HomeComponentStateService {
     return merge(this.viewModel$, characters$);
   }
 
-  handleScrollEvent(scrollEv: any, isMobile = false): void {
+  handleScrollEvent(updatedScroll: number): void {
     const currentState = this._homeViewModelSub$.getValue();
-    const shouldFetch = this.shouldFetchMoreRecords(currentState, scrollEv, isMobile);
+    const shouldFetch = this.shouldFetchMoreRecords(currentState, updatedScroll);
     if(shouldFetch) {
       const apiReq = this._marvelApiSvc.getApiHash();
       this._store.dispatch(getNextBatchOfCharacters({apiReq}));
@@ -48,12 +43,11 @@ export abstract class HomeComponentStateService {
     
   }
 
-  private shouldFetchMoreRecords(currentState: HomeComponentViewModel, scrollEvent: any, isMobile: boolean): boolean {
-    const scrollTopFromEv = !isMobile ? scrollEvent.target?.scrollingElement?.scrollTop : scrollEvent.detail.currentY;
-    if (currentState.scrollTop + 100 < scrollTopFromEv) {
+  private shouldFetchMoreRecords(currentState: HomeComponentViewModel, updatedScroll: number): boolean {
+    if (currentState.scrollTop + 100 < updatedScroll) {
       this._homeViewModelSub$.next({
         ...currentState,
-        scrollTop: scrollTopFromEv
+        scrollTop: updatedScroll
       })
       return true;
     }
