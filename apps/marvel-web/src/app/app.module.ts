@@ -24,8 +24,7 @@ import {MarvelAppsSharedModule} from '@pmt/marvel-apps-shared';
     HttpClientModule,
     MatProgressSpinnerModule,
     MarvelAppsSharedModule,
-    StoreDevtoolsModule.instrument({}),
-    MarvelHomeModule,
+    StoreDevtoolsModule.instrument({})
   ],
   providers: [],
   bootstrap: [AppComponent],
