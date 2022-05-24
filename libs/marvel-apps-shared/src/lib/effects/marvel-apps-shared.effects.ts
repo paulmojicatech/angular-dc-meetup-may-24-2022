@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, tap } from "rxjs";
-import { setErrorMessage, toggleLoader } from "../actions/marvel-apps-shared.actions";
+import { tap } from "rxjs";
+import { setErrorMessage } from "../actions/marvel-apps-shared.actions";
 
 @Injectable()
 export class MarvelSharedAppsEffects {

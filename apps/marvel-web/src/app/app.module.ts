@@ -1,18 +1,15 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { StoreModule } from '@ngrx/store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MarvelHomeModule} from '@pmt/marvel-home-module';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {MarvelAppsSharedModule} from '@pmt/marvel-apps-shared';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MarvelAppsSharedModule } from '@pmt/marvel-apps-shared';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

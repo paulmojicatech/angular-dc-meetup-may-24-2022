@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       debounceTime(500),
       takeUntil(this._componentDestroyed$)
     ).subscribe((scrollEv) => {
-      console.log('SCROLL', scrollEv);
       this.componentStateSvc.handleScrollEvent(scrollEv);
     });
 }
